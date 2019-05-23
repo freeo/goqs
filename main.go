@@ -7,7 +7,7 @@ import (
 )
 
 func handler(w http.ResponseWriter, r *http.Request) {
-	title := "goqs github docker registry ImagePullBackOff\n\nAfter gcloud auth configure-docker"
+	title := "EDIT goqs github docker registry ImagePullBackOff\n\nAfter gcloud auth configure-docker"
 
 	from := ""
 	if r.URL != nil {
