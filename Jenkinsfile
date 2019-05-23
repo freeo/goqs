@@ -3,7 +3,8 @@ pipeline {
     label "jenkins-go"
   }
   environment {
-    ORG = 'freeo'
+    // ORG = 'freeo' - does this wreak this much havoccc?
+    ORG = 'dev-infra-240819'
     APP_NAME = 'goqs'
     CHARTMUSEUM_CREDS = credentials('jenkins-x-chartmuseum')
   }
