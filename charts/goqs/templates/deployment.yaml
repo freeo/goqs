@@ -23,7 +23,7 @@ spec:
       - name: {{ .Chart.Name }}
         # image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         # XXX
-        image: eu.gcr.io/dev-infra-240819/goqs:"{{ .Values.image.tag }}"
+        image: "eu.gcr.io/dev-infra-240819/goqs:{{ .Values.image.tag }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         env:
 {{- range $pkey, $pval := .Values.env }}
