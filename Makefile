@@ -11,7 +11,6 @@ PKGS := $(subst  :,_,$(PKGS))
 BUILDFLAGS := ''
 CGO_ENABLED = 0
 VENDOR_DIR=vendor
-GO111MODULE=on go mod download
 
 
 all: build
@@ -19,6 +18,7 @@ all: build
 check: fmt build test
 
 build:
+	GO111MODULE=on go mod download
 	go mod download
 	CGO_ENABLED=$(CGO_ENABLED) $(GO) build -ldflags $(BUILDFLAGS) -o bin/$(NAME) $(MAIN_GO)
 
