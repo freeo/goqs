@@ -11,6 +11,8 @@ PKGS := $(subst  :,_,$(PKGS))
 BUILDFLAGS := ''
 CGO_ENABLED = 0
 VENDOR_DIR=vendor
+GO111MODULE=on go mod download
+
 
 all: build
 
