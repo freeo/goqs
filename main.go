@@ -18,29 +18,30 @@
 package main
 
 import (
+	"context"
+	"encoding/json"
 	"fmt"
 	"log"
 	"net/http"
 	"os"
-	"encoding/json"
 	"strconv"
-	"github.com/gorilla/mux"
 
 	"cloud.google.com/go/datastore"
-
-	"context"
+	"github.com/gorilla/mux"
+	"github.com/gorilla/rpc"
+	gorillajson "github.com/gorilla/rpc/json"
 )
 
 type User struct {
-    ID        int
-    FirstName string
-    LastName  string
+	ID        int
+	FirstName string
+	LastName  string
 }
 
-var users = []User {
- User{ ID: 1, FirstName: "Max", LastName: "Mustermann"},
- User{ ID: 2, FirstName: "Erika", LastName: "Mustermann"},
- User{ ID: 3, FirstName: "Markus", LastName: "Mustermann"},
+var users = []User{
+	User{ID: 1, FirstName: "Max", LastName: "Mustermann"},
+	User{ID: 2, FirstName: "Erika", LastName: "Mustermann"},
+	User{ID: 3, FirstName: "Markus", LastName: "Mustermann"},
 }
 
 func getInfo(w http.ResponseWriter, r *http.Request) {
@@ -59,13 +60,12 @@ func getDetails(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
 	var id, x = strconv.Atoi(params["id"])
 	log.Print(x)
-	for _, item := range users{
+	for _, item := range users {
 		if item.ID == id {
 			json.NewEncoder(w).Encode(item)
 		}
 	}
 }
-
 
 func postUsers(w http.ResponseWriter, r *http.Request) {
 	//params := mux.Vars(r)
@@ -89,6 +89,7 @@ func main() {
 	port := "8080"
 	if fromEnv := os.Getenv("PORT"); fromEnv != "" {
 		port = fromEnv
+
 	}
 
 	// register hello function to handle all requests
@@ -102,7 +103,14 @@ func main() {
 	log.Printf("Server listening on port %s", port)
 	err := http.ListenAndServe(":"+port, server)
 	log.Fatal(err)
+
+	// simple go.mod test, any package, so that I can test the pipeline
+	s := rpc.NewServer()
+	s.RegisterCodec(gorillajson.NewCodec(), "application/json")
+	s.RegisterService(new(HelloService), "")
 }
+
+type HelloService struct {}
 
 
 func datastoreAccess() {
@@ -136,4 +144,5 @@ func datastoreAccess() {
 
 	fmt.Printf("Saved %v: %v\n", taskKey, task.Description)
 }
+
 // [END all]

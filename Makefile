@@ -17,6 +17,7 @@ all: build
 check: fmt build test
 
 build:
+	go mod download
 	CGO_ENABLED=$(CGO_ENABLED) $(GO) build -ldflags $(BUILDFLAGS) -o bin/$(NAME) $(MAIN_GO)
 
 test: 
