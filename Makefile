@@ -18,8 +18,9 @@ all: build
 check: fmt build test
 
 build:
-	# GO111MODULE=on go mod download
-	GO111MODULE=on
+	unset GOPATH
+	GO111MODULE=on go mod download
+	# GO111MODULE=on
 	CGO_ENABLED=$(CGO_ENABLED) $(GO) build -ldflags $(BUILDFLAGS) -o bin/$(NAME) $(MAIN_GO)
 
 test: 
