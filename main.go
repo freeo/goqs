@@ -42,6 +42,7 @@ var users = []User{
 	User{ID: 1, FirstName: "Max", LastName: "Mustermann"},
 	User{ID: 2, FirstName: "Erika", LastName: "Mustermann"},
 	User{ID: 3, FirstName: "Markus", LastName: "Mustermann"},
+	User{ID: 4, FirstName: "Ralf", LastName: "Schmitz"},
 }
 
 func getInfo(w http.ResponseWriter, r *http.Request) {
@@ -110,8 +111,7 @@ func main() {
 	s.RegisterService(new(HelloService), "")
 }
 
-type HelloService struct {}
-
+type HelloService struct{}
 
 func datastoreAccess() {
 	ctx := context.Background()

@@ -20,7 +20,7 @@ check: fmt build test
 build:
 	unset GOPATH
 	GO111MODULE=on go mod download
-	# GO111MODULE=on
+	go mod vendor
 	CGO_ENABLED=$(CGO_ENABLED) $(GO) build -ldflags $(BUILDFLAGS) -o bin/$(NAME) $(MAIN_GO)
 
 test: 
