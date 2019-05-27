@@ -3,6 +3,7 @@
 .idea
 .cache
 .DS_Store
+.vscode
 *.im?
 target
 work

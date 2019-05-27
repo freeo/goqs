@@ -18,9 +18,12 @@ all: build
 check: fmt build test
 
 build:
-	unset GOPATH
-	GO111MODULE=on go mod download
-	go mod vendor
+	# TEST: now that I use /vendor folder, do I even require downloading deps in remote pipeline?
+	# unset GOPATH
+	# GO111MODULE=on go mod download
+	# unset GOPATH
+	# go mod vendor # breaks in jx pipeline
+	# go mod vendor
 	CGO_ENABLED=$(CGO_ENABLED) $(GO) build -ldflags $(BUILDFLAGS) -o bin/$(NAME) $(MAIN_GO)
 
 test: 

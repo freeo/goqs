@@ -43,6 +43,8 @@ var users = []User{
 	User{ID: 2, FirstName: "Erika", LastName: "Mustermann"},
 	User{ID: 3, FirstName: "Markus", LastName: "Mustermann"},
 	User{ID: 4, FirstName: "Ralf", LastName: "Schmitz"},
+	User{ID: 5, FirstName: "Dieter", LastName: "Hallervorden"},
+	User{ID: 6, FirstName: "Heinz", LastName: "Ruemann"},
 }
 
 func getInfo(w http.ResponseWriter, r *http.Request) {

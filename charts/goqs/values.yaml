@@ -5,7 +5,8 @@ replicaCount: 1
 image:
   repository: draft
   tag: dev
-  pullPolicy: IfNotPresent
+  # pullPolicy: IfNotPresent
+  pullPolicy: Always
 
 # define environment variables here as a map of key: value
 env:
