@@ -1,16 +1,14 @@
 # apiVersion: skaffold/v1beta2
-# apiVersion: skaffold/v1beta11
 apiVersion: skaffold/v1beta10
 kind: Config
 build:
-  tagPolicy:
-      sha256: {}
   artifacts:
   - image: eu.gcr.io/dev-infra-240819/goqs
     context: .
     docker: {}
-    # envTemplate:
-    #   template: '{{.DOCKER_REGISTRY}}/{{.IMAGE_NAME}}:{{.VERSION}}'
+  tagPolicy:
+    envTemplate:
+      template: '{{.DOCKER_REGISTRY}}/{{.IMAGE_NAME}}:{{.VERSION}}'
       # relevant for `skaffold dev`
       # template: 'eu.gcr.io/{{.IMAGE_NAME}}:skaffold'
       # :skaffold doesn't always pull the latest
@@ -40,6 +38,5 @@ profiles:
         chartPath: charts/goqs
         setValueTemplates:
           image.repository: '{{.DOCKER_REGISTRY}}/{{.IMAGE_NAME}}'
-          # image.tag: '{{.DIGEST_HEX}}'
-          # image.tag: 'skaffold'
-          image.tag: '{{.DIGEST}}'
+          image.tag: '{{.DIGEST_HEX}}'
+          # image.tag: '{{.DIGEST}}'
