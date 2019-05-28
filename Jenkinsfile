@@ -24,6 +24,7 @@ pipeline {
             checkout scm
             sh "make linux"
             sh "export VERSION=$PREVIEW_VERSION && skaffold build -f skaffold.yaml"
+            sh "echo $PREVIEW_VERSION"
             sh "jx step post build --image $DOCKER_REGISTRY/dev-infra-240819/$APP_NAME:$PREVIEW_VERSION"
             // sh "jx step post build --image $DOCKER_REGISTRY/$ORG/$APP_NAME:$PREVIEW_VERSION"
           }
