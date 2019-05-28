@@ -3,7 +3,10 @@ apiVersion: skaffold/v1beta10
 kind: Config
 build:
   artifacts:
-  - image: eu.gcr.io/dev-infra-240819/goqs
+  # remove from image: eu.gcr.io/
+  # because:
+  # time="2019-05-28T10:36:38Z" level=fatal msg="build failed: building [eu.gcr.io/dev-infra-240819/goqs]: build artifact: unknown: Project 'project:eu.gcr.io:dev-infra-240819' not found or deleted."
+  - image: dev-infra-240819/goqs
     context: .
     docker: {}
   tagPolicy:
