@@ -41,5 +41,4 @@ profiles:
         chartPath: charts/goqs
         setValueTemplates:
           image.repository: '{{.DOCKER_REGISTRY}}/{{.IMAGE_NAME}}'
-          image.tag: '{{.DIGEST_HEX}}'
-          # image.tag: '{{.DIGEST}}'
+          image.tag: '{{.DIGEST}}'
