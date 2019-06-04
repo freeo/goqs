@@ -52,7 +52,7 @@ var users = []User{
 	User{ID: 11, FirstName: "Mel", LastName: "Brooks"},
 	User{ID: 12, FirstName: "Adam", LastName: "Sandler"},
 	User{ID: 13, FirstName: "Atze", LastName: "Schröder"},
-	User{ID: 14, AbsichtlichKaputtesJSONobject},
+	User{ID: 14, FirstName: "Louis", LastName: "CK"},
 }
 
 func getInfo(w http.ResponseWriter, r *http.Request) {
